@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MydłoRecords — oficjalna strona artysty</title>
+    <meta name="description" content="MydłoRecords — niezależny, polski projekt eksperymentalny. Posłuchaj singli „paper-cups", „Otwór", „Eliminatorrrr", „Julek bez kulek" i „Pan Mietek" na Spotify.">
+
+    <meta property="og:type" content="music.musician">
+    <meta property="og:title" content="MydłoRecords — oficjalna strona artysty">
+    <meta property="og:description" content="Niezależny, polski projekt eksperymentalny. Najnowszy singiel: „Pan Mietek" (12.10.2026).">
+    <meta property="og:image" content="https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27360b8aef8969ffb3389c9c29e">
+    <meta property="og:url" content="https://open.spotify.com/artist/2OcdkJNYBEmPx0D9Fy43km">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-2: #101010;
+            --panel: #141414;
+            --line: #262626;
+            --text: #f2f2f2;
+            --muted: #8f8f8f;
+            --acid: #ccff33;
+            --acid-dim: #9bc72a;
+            --max: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Space Grotesk", Arial, Helvetica, sans-serif;
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* film grain */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: .055;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+
+        .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+        h1, h2, h3, .display {
+            font-family: "Archivo Black", Impact, "Arial Black", sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -.03em;
+            line-height: .95;
+            font-weight: 400;
+        }
+
+        /* ---------- NAV ---------- */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(10,10,10,.82);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .brand {
+            font-family: "Archivo Black", Impact, sans-serif;
+            text-transform: uppercase;
+            font-size: 1.05rem;
+            letter-spacing: -.02em;
+            text-decoration: none;
+        }
+
+        .brand span { color: var(--acid); }
+
+        .nav-links {
+            margin-left: auto;
+            display: flex;
+            gap: 22px;
+            list-style: none;
+            font-size: .85rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            transition: color .15s;
+        }
+
+        .nav-links a:hover { color: var(--acid); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 26px;
+            border-radius: 100px;
+            font-size: .82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            text-decoration: none;
+            border: 1px solid var(--acid);
+            color: var(--acid);
+            background: transparent;
+            cursor: pointer;
+            transition: .18s;
+            font-family: inherit;
+        }
+
+        .btn:hover { background: var(--acid); color: #000; transform: translateY(-2px); }
+
+        .btn-solid { background: var(--acid); color: #000; }
+        .btn-solid:hover { background: #fff; border-color: #fff; color: #000; }
+
+        .btn-ghost { border-color: #3a3a3a; color: var(--text); }
+        .btn-ghost:hover { background: #fff; border-color: #fff; color: #000; }
+
+        nav .btn { padding: 10px 18px; font-size: .74rem; }
+
+        /* ---------- HERO ---------- */
+        header.hero {
+            position: relative;
+            padding: 150px 0 70px;
+            background:
+                radial-gradient(ellipse 70% 55% at 75% 20%, rgba(204,255,51,.10), transparent 60%),
+                radial-gradient(ellipse 60% 50% at 15% 85%, rgba(255,255,255,.05), transparent 60%),
+                var(--bg);
+            border-bottom: 1px solid var(--line);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+            gap: 55px;
+            align-items: center;
+        }
+
+        .hero-grid > * { min-width: 0; }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .74rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--acid);
+            margin-bottom: 22px;
+        }
+
+        .kicker::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--acid);
+        }
+
+        .hero h1 {
+            font-size: clamp(3.1rem, 8.5vw, 6.6rem);
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--acid);
+            -webkit-text-stroke: 0;
+        }
+
+        .hero-sub {
+            margin-top: 24px;
+            max-width: 34em;
+            color: #b8b8b8;
+            font-size: 1.06rem;
+        }
+
+        .hero-cta {
+            margin-top: 34px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .stats {
+            margin-top: 44px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 34px;
+            border-top: 1px solid var(--line);
+            padding-top: 26px;
+        }
+
+        .stat b {
+            display: block;
+            font-family: "Archivo Black", Impact, sans-serif;
+            font-size: 1.9rem;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .stat span {
+            font-size: .72rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .portrait {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            box-shadow: 0 30px 90px rgba(0,0,0,.7);
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.1);
+            transition: filter .5s, transform .8s;
+        }
+
+        .portrait:hover img { filter: grayscale(0) contrast(1); transform: scale(1.04); }
+
+        .portrait::after {
+            content: "MydłoRecords · Spotify";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            padding: 12px 16px;
+            background: rgba(0,0,0,.72);
+            border-top: 1px solid rgba(204,255,51,.5);
+            color: var(--acid);
+            font-size: .68rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        /* ---------- TICKER ---------- */
+        .ticker {
+            background: var(--acid);
+            color: #000;
+            overflow: hidden;
+            border-bottom: 1px solid #000;
+            padding: 11px 0;
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: slide 28s linear infinite;
+            font-family: "Archivo Black", Impact, sans-serif;
+            text-transform: uppercase;
+            font-size: .88rem;
+            letter-spacing: .04em;
+        }
+
+        .ticker-track span { padding: 0 26px; white-space: nowrap; }
+
+        @keyframes slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ---------- SECTIONS ---------- */
+        section { padding: 92px 0; border-bottom: 1px solid var(--line); }
+
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 42px;
+            flex-wrap: wrap;
+        }
+
+        .sec-head .num {
+            font-family: "Archivo Black", Impact, sans-serif;
+            color: var(--acid);
+            font-size: .9rem;
+            letter-spacing: .1em;
+        }
+
+        .sec-head h2 { font-size: clamp(2rem, 4.4vw, 3.1rem); }
+
+        .sec-head p {
+            margin-left: auto;
+            color: var(--muted);
+            font-size: .9rem;
+            max-width: 34ch;
+            text-align: right;
+        }
+
+        /* ---------- TRACKS ---------- */
+        .tracks { list-style: none; border-top: 1px solid var(--line); }
+
+        .track {
+            position: relative;
+            display: grid;
+            grid-template-columns: 54px 1fr auto auto;
+            align-items: center;
+            gap: 18px;
+            padding: 20px 14px;
+            border-bottom: 1px solid var(--line);
+            transition: background .2s;
+        }
+
+        .track:hover { background: var(--bg-2); }
+
+        .track.playing { background: var(--bg-2); }
+
+        .track .bar {
+            position: absolute;
+            left: 0; bottom: -1px;
+            height: 2px;
+            width: 0%;
+            background: var(--acid);
+            transition: width .12s linear;
+        }
+
+        .play {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            background: #171717;
+            color: var(--text);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: .18s;
+            flex: none;
+        }
+
+        .play:hover { border-color: var(--acid); color: var(--acid); }
+
+        .track.playing .play {
+            background: var(--acid);
+            border-color: var(--acid);
+            color: #000;
+        }
+
+        .play svg { width: 15px; height: 15px; fill: currentColor; }
+
+        .t-title {
+            font-family: "Archivo Black", Impact, sans-serif;
+            text-transform: uppercase;
+            font-size: 1.18rem;
+            letter-spacing: -.02em;
+            line-height: 1.2;
+        }
+
+        .t-meta {
+            color: var(--muted);
+            font-size: .82rem;
+            margin-top: 3px;
+        }
+
+        .t-meta a { color: var(--acid-dim); text-decoration: none; }
+        .t-meta a:hover { text-decoration: underline; }
+
+        .badge {
+            font-size: .62rem;
+            letter-spacing: .12em;
+            border: 1px solid #3a3a3a;
+            color: var(--muted);
+            padding: 3px 7px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .t-dur {
+            font-variant-numeric: tabular-nums;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .t-link {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: .74rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            border: 1px solid #2e2e2e;
+            padding: 8px 13px;
+            border-radius: 100px;
+            transition: .18s;
+            white-space: nowrap;
+        }
+
+        .t-link:hover { color: var(--acid); border-color: var(--acid); }
+
+        .tracks-note {
+            margin-top: 18px;
+            color: #6d6d6d;
+            font-size: .8rem;
+        }
+
+        /* ---------- EMBED ---------- */
+        .embed-box {
+            margin-top: 46px;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .embed-box iframe {
+            width: 100%;
+            border: 0;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .embed-cap {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+            font-size: .74rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ---------- DISCOGRAPHY ---------- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 24px;
+            transition: .2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover { transform: translateY(-5px); border-color: var(--acid); }
+
+        .card .type {
+            font-size: .68rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--acid);
+        }
+
+        .card h3 {
+            margin: 14px 0 8px;
+            font-size: 1.35rem;
+            line-height: 1.05;
+        }
+
+        .card .date { color: var(--muted); font-size: .86rem; }
+
+        .card .card-link {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: .74rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text);
+            border-bottom: 1px solid var(--acid);
+            padding-bottom: 3px;
+            transition: .18s;
+        }
+
+        .card .card-link:hover { color: var(--acid); }
+
+        .card.featured {
+            background: linear-gradient(150deg, rgba(204,255,51,.14), rgba(204,255,51,.02) 55%), var(--panel);
+            border-color: var(--acid-dim);
+        }
+
+        .card .flag {
+            display: inline-block;
+            background: var(--acid);
+            color: #000;
+            font-size: .6rem;
+            letter-spacing: .14em;
+            padding: 4px 11px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        /* ---------- ABOUT ---------- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 46px;
+            align-items: start;
+        }
+
+        .about p { color: #c4c4c4; font-size: 1.05rem; margin-bottom: 18px; }
+
+        .about p.lead {
+            font-size: 1.35rem;
+            color: #fff;
+            line-height: 1.45;
+        }
+
+        .facts { border-top: 1px solid var(--line); }
+
+        .fact {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: .9rem;
+        }
+
+        .fact dt { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .74rem; }
+        .fact dd { text-align: right; font-weight: 500; }
+
+        .notice {
+            margin-top: 26px;
+            padding: 16px 18px;
+            background: var(--bg-2);
+            border-left: 3px solid var(--acid);
+            color: var(--muted);
+            font-size: .87rem;
+        }
+
+        /* ---------- PEOPLE ---------- */
+        .person {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 26px;
+            transition: .2s;
+        }
+
+        .person:hover { border-color: #4a4a4a; transform: translateY(-4px); }
+
+        .person .avatar {
+            width: 54px; height: 54px;
+            border-radius: 50%;
+            background: #1e1e1e;
+            border: 1px solid #333;
+            display: grid;
+            place-items: center;
+            font-family: "Archivo Black", Impact, sans-serif;
+            color: var(--acid);
+            margin-bottom: 16px;
+        }
+
+        .person h3 { font-size: 1.15rem; margin-bottom: 6px; }
+
+        .person .role {
+            font-size: .7rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--acid);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .person p { color: var(--muted); font-size: .92rem; }
+
+        /* ---------- CONTACT ---------- */
+        .contact-box {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 54px 34px;
+            text-align: center;
+        }
+
+        .contact-box h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
+
+        .contact-box p { color: var(--muted); margin-top: 14px; }
+
+        .mail {
+            display: inline-block;
+            margin-top: 26px;
+            font-family: "Archivo Black", Impact, sans-serif;
+            font-size: clamp(1.1rem, 3.6vw, 2rem);
+            color: var(--acid);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            letter-spacing: -.02em;
+            text-transform: none;
+        }
+
+        .mail:hover { border-bottom-color: var(--acid); }
+
+        .socials {
+            margin-top: 32px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            padding: 34px 0 46px;
+            color: #666;
+            font-size: .82rem;
+        }
+
+        .foot-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .foot-inner a { color: #999; text-decoration: none; }
+        .foot-inner a:hover { color: var(--acid); }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .portrait { max-width: 420px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .sec-head p { text-align: left; margin-left: 0; }
+            .nav-links { display: none; }
+        }
+
+        @media (max-width: 620px) {
+            section { padding: 66px 0; }
+            .track {
+                grid-template-columns: 46px 1fr;
+                grid-template-areas:
+                    "play title"
+                    "play meta";
+                row-gap: 6px;
+            }
+            .track .play { grid-area: play; width: 42px; height: 42px; }
+            .track .t-main { grid-area: title; }
+            .track .t-side { grid-area: meta; display: flex; gap: 12px; align-items: center; grid-column: 2; }
+            .t-link { display: none; }
+            .stats { gap: 24px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a class="brand" href="#top">Mydło<span>Records</span></a>
+        <ul class="nav-links">
+            <li><a href="#muzyka">Muzyka</a></li>
+            <li><a href="#dyskografia">Dyskografia</a></li>
+            <li><a href="#o-projekcie">O projekcie</a></li>
+            <li><a href="#tworcy">Twórcy</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <a class="btn" href="https://open.spotify.com/artist/2OcdkJNYBEmPx0D9Fy43km" target="_blank" rel="noopener">Spotify ↗</a>
+    </div>
+</nav>
+
+<header class="hero" id="top">
+    <div class="wrap hero-grid">
+        <div>
+            <span class="kicker">Polska · Underground · Experimental</span>
+
+            <h1>Mydło<br><em>Records</em></h1>
+
+            <p class="hero-sub">
+                Niezależny projekt muzyczny i wydawnictwo z polskiej sceny alternatywnej.
+                Surowe, eksperymentalne formy, wydawane w singlach — bez pośredników,
+                bez kompromisów.
+            </p>
+
+            <div class="hero-cta">
+                <a class="btn btn-solid" href="https://open.spotify.com/artist/2OcdkJNYBEmPx0D9Fy43km" target="_blank" rel="noopener">
+                    Słuchaj na Spotify
+                </a>
+                <a class="btn btn-ghost" href="#muzyka">Odtwórz utwory</a>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <b>19</b>
+                    <span>Słuchaczy / mies.</span>
+                </div>
+                <div class="stat">
+                    <b>5</b>
+                    <span>Singli</span>
+                </div>
+                <div class="stat">
+                    <b>2026</b>
+                    <span>Pięć premier</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portrait">
+            <img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27360b8aef8969ffb3389c9c29e"
+                 alt="MydłoRecords — grafika artysty" loading="eager" width="640" height="640">
+        </div>
+    </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+        <span>Nowy singiel — „Pan Mietek" · 12.10.2026</span>
+        <span>◆</span>
+        <span>„Otwór" — z Ełgeniuszem krabem</span>
+        <span>◆</span>
+        <span>„Eliminatorrrr"</span>
+        <span>◆</span>
+        <span>„paper-cups"</span>
+        <span>◆</span>
+        <span>„Julek bez kulek"</span>
+        <span>◆</span>
+        <span>Nowy singiel — „Pan Mietek" · 12.10.2026</span>
+        <span>◆</span>
+        <span>„Otwór" — z Ełgeniuszem krabem</span>
+        <span>◆</span>
+        <span>„Eliminatorrrr"</span>
+        <span>◆</span>
+        <span>„paper-cups"</span>
+        <span>◆</span>
+        <span>„Julek bez kulek"</span>
+        <span>◆</span>
+    </div>
+</div>
+
+<section id="muzyka">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="num">01 /</span>
+            <h2>Najczęściej słuchane</h2>
+            <p>Kliknij, aby odtworzyć fragment. Pełne utwory znajdziesz na Spotify.</p>
+        </div>
+
+        <ol class="tracks" id="tracklist">
+            <li class="track"
+                data-preview="https://p.scdn.co/mp3-preview/518d49143db190255714e0d709bf78382a692605"
+                data-spotify="https://open.spotify.com/track/1g6wqPUvIiVLODwQXaTB99">
+                <span class="bar"></span>
+                <button class="play" aria-label="Odtwórz fragment: paper-cups">
+                    <svg viewBox="0 0 24 24" class="ico-play"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <div class="t-main">
+                    <div class="t-title">paper-cups</div>
+                    <div class="t-meta">MydłoRecords</div>
+                </div>
+                <div class="t-side">
+                    <span class="badge">Explicit</span>
+                    <span class="t-dur">2:12</span>
+                    <a class="t-link" href="https://open.spotify.com/track/1g6wqPUvIiVLODwQXaTB99" target="_blank" rel="noopener">Spotify ↗</a>
+                </div>
+            </li>
+
+            <li class="track"
+                data-preview="https://p.scdn.co/mp3-preview/89839d91565248d4256fbb5fe7ceed99ec24486e"
+                data-spotify="https://open.spotify.com/track/2ExOAA3VUMrtjhCReByp30">
+                <span class="bar"></span>
+                <button class="play" aria-label="Odtwórz fragment: Otwór">
+                    <svg viewBox="0 0 24 24" class="ico-play"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <div class="t-main">
+                    <div class="t-title">Otwór</div>
+                    <div class="t-meta">MydłoRecords feat. <a href="https://open.spotify.com/track/2ExOAA3VUMrtjhCReByp30" target="_blank" rel="noopener">Ełgeniusz krab</a></div>
+                </div>
+                <div class="t-side">
+                    <span class="t-dur">3:09</span>
+                    <a class="t-link" href="https://open.spotify.com/track/2ExOAA3VUMrtjhCReByp30" target="_blank" rel="noopener">Spotify ↗</a>
+                </div>
+            </li>
+
+            <li class="track"
+                data-preview="https://p.scdn.co/mp3-preview/b6fd1a2942e3ae530a019a561f63949a6a0df9ad"
+                data-spotify="https://open.spotify.com/track/26cxgmNoudXCLusCLtNVEM">
+                <span class="bar"></span>
+                <button class="play" aria-label="Odtwórz fragment: Eliminatorrrr">
+                    <svg viewBox="0 0 24 24" class="ico-play"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <div class="t-main">
+                    <div class="t-title">Eliminatorrrr</div>
+                    <div class="t-meta">MydłoRecords</div>
+                </div>
+                <div class="t-side">
+                    <span class="badge">Explicit</span>
+                    <span class="t-dur">3:01</span>
+                    <a class="t-link" href="https://open.spotify.com/track/26cxgmNoudXCLusCLtNVEM" target="_blank" rel="noopener">Spotify ↗</a>
+                </div>
+            </li>
+
+            <li class="track"
+                data-preview="https://p.scdn.co/mp3-preview/d426ffdc838ff9fcbc843cbc89fc4e95934792ad"
+                data-spotify="https://open.spotify.com/track/5cz2shagsXtnBNqGsFCPVM">
+                <span class="bar"></span>
+                <button class="play" aria-label="Odtwórz fragment: Julek bez kulek">
+                    <svg viewBox="0 0 24 24" class="ico-play"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <div class="t-main">
+                    <div class="t-title">Julek bez kulek</div>
+                    <div class="t-meta">MydłoRecords</div>
+                </div>
+                <div class="t-side">
+                    <span class="badge">Explicit</span>
+                    <span class="t-dur">2:04</span>
+                    <a class="t-link" href="https://open.spotify.com/track/5cz2shagsXtnBNqGsFCPVM" target="_blank" rel="noopener">Spotify ↗</a>
+                </div>
+            </li>
+        </ol>
+
+        <p class="tracks-note">
+            Fragmenty odtwarzane są bezpośrednio ze Spotify (ok. 30 s). Jeśli podgląd nie wystartuje,
+            otwórz utwór przyciskiem „Spotify ↗”. Źródło danych: profil artysty na Spotify,
+            stan na październik 2026.
+        </p>
+
+        <div class="embed-box">
+            <div class="embed-cap">
+                <span>Odtwarzacz Spotify</span>
+                <a href="https://open.spotify.com/artist/2OcdkJNYBEmPx0D9Fy43km" target="_blank" rel="noopener">open.spotify.com ↗</a>
+            </div>
+            <iframe
+                title="Spotify Embed: MydłoRecords"
+                src="https://open.spotify.com/embed/artist/2OcdkJNYBEmPx0D9Fy43km"
+                height="420" loading="lazy"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+    </div>
+</section>
+
+<section id="dyskografia">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="num">02 /</span>
+            <h2>Dyskografia</h2>
+            <p>Wszystkie wydania to single. Rok 2026 — pięć premier.</p>
+        </div>
+
+        <div class="grid">
+            <article class="card featured">
+                <span class="flag">Najnowsze</span>
+                <span class="type">Singiel</span>
+                <h3>Pan Mietek</h3>
+                <p class="date">12 października 2026</p>
+                <a class="card-link" href="https://open.spotify.com/search/Pan%20Mietek%20Myd%C5%82oRecords" target="_blank" rel="noopener">Znajdź na Spotify ↗</a>
+            </article>
+
+            <article class="card">
+                <span class="type">Singiel · feat. Ełgeniusz krab</span>
+                <h3>Otwór</h3>
+                <p class="date">6 października 2026</p>
+                <a class="card-link" href="https://open.spotify.com/track/2ExOAA3VUMrtjhCReByp30" target="_blank" rel="noopener">Posłuchaj ↗</a>
+            </article>
+
+            <article class="card">
+                <span class="type">Singiel</span>
+                <h3>Eliminatorrrr</h3>
+                <p class="date">2026</p>
+                <a class="card-link" href="https://open.spotify.com/track/26cxgmNoudXCLusCLtNVEM" target="_blank" rel="noopener">Posłuchaj ↗</a>
+            </article>
+
+            <article class="card">
+                <span class="type">Singiel</span>
+                <h3>paper-cups</h3>
+                <p class="date">2026</p>
+                <a class="card-link" href="https://open.spotify.com/track/1g6wqPUvIiVLODwQXaTB99" target="_blank" rel="noopener">Posłuchaj ↗</a>
+            </article>
+
+            <article class="card">
+                <span class="type">Singiel</span>
+                <h3>Julek bez kulek</h3>
+                <p class="date">2026</p>
+                <a class="card-link" href="https://open.spotify.com/track/5cz2shagsXtnBNqGsFCPVM" target="_blank" rel="noopener">Posłuchaj ↗</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="o-projekcie">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="num">03 /</span>
+            <h2>O projekcie</h2>
+            <p>Niezależnie, od pierwszego nagrania.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about">
+                <p class="lead">
+                    MydłoRecords (również Mydło Records) to niezależny, niszowy projekt
+                    muzyczny oraz wydawnictwo związane z polską sceną alternatywną.
+                </p>
+
+                <p>
+                    Projekt skupia się na surowych, eksperymentalnych formach muzycznych
+                    i niezależnych publikacjach dostępnych w serwisach streamingowych.
+                    Zamiast albumów — serie krótkich, mocnych singli: od surowych,
+                    trzyminutowych form po nagrania z gościnnymi udziałami,
+                    jak „Otwór” z Ełgeniuszem krabem.
+                </p>
+
+                <p>
+                    Cały katalog ukazuje się pod jednym szyldem i jest dostępny na Spotify,
+                    YouTube oraz Amazon Music. Produkcja, miks i wydanie pozostają
+                    w rękach osób stojących za projektem.
+                </p>
+
+                <div class="notice">
+                    Informacje dotyczące osób związanych z projektem mają charakter
+                    informacyjny i mogą ulegać zmianom wraz z rozwojem projektu.
+                </div>
+            </div>
+
+            <dl class="facts">
+                <div class="fact">
+                    <dt>Wytwórnia</dt>
+                    <dd>MydłoRecords</dd>
+                </div>
+                <div class="fact">
+                    <dt>Gatunek</dt>
+                    <dd>Experimental / underground</dd>
+                </div>
+                <div class="fact">
+                    <dt>Kraj</dt>
+                    <dd>Polska</dd>
+                </div>
+                <div class="fact">
+                    <dt>Wydania</dt>
+                    <dd>5 singli (2026)</dd>
+                </div>
+                <div class="fact">
+                    <dt>Słuchacze / mies.</dt>
+                    <dd>19 na Spotify</dd>
+                </div>
+                <div class="fact">
+                    <dt>Ostatnia premiera</dt>
+                    <dd>„Pan Mietek” · 12.10.2026</dd>
+                </div>
+                <div class="fact">
+                    <dt>Kontakt</dt>
+                    <dd>213336321@proton.me</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</section>
+
+<section id="tworcy">
+    <div class="wrap">
+        <div class="sec-head">
+            <span class="num">04 /</span>
+            <h2>Twórcy i osoby powiązane</h2>
+            <p>Lista informacyjna — uzupełniana w miarę nowych wydań.</p>
+        </div>
+
+        <div class="grid">
+            <article class="person">
+                <div class="avatar">M</div>
+                <h3>Miłosz Szymański</h3>
+                <span class="role">Producent</span>
+                <p>
+                    Odpowiedzialny za dystrybucję piosenek do platform takich jak Spotify YTM Tidal i inne
+                    Nie jest odpowiedzialny za treść piosenek. Wszystkie są tworzone i wysylane przez Adama.
+                </p>
+            </article>
+
+            <article class="person">
+                <div class="avatar">E</div>
+                <h3>Ełgeniusz Krab</h3>
+                <span class="role">Gościnnie</span>
+                <p>
+                    Współtwórca, sygnowanego na Spotify jako
+                    „MydłoRecords, Ełgeniusz krab”.
+                </p>
+            </article>
+
+            <article class="person">
+                <div class="avatar">A</div>
+                <h3>Adam Jasiński</h3>
+                <span class="role">Tekst i Muzyka</span>
+                <p>
+                    Główny Twórca Tekstu i muzyki, współzałożyciel 
+                    MydłoRecords.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="kontakt">
+    <div class="wrap">
+        <div class="contact-box">
+            <h2>Kontakt</h2>
+            <p>W sprawie projektu, muzyki, promocji lub współpracy:</p>
+
+            <a class="mail" href="mailto:213336321@proton.me">213336321@proton.me</a>
+
+            <div class="socials">
+                <a class="btn btn-solid" href="https://open.spotify.com/artist/2OcdkJNYBEmPx0D9Fy43km" target="_blank" rel="noopener">Spotify</a>
+                <a class="btn btn-ghost" href="https://www.youtube.com/channel/UCoM0F9o92VE_B0m8IfGHlpg" target="_blank" rel="noopener">YouTube</a>
+                <a class="btn btn-ghost" href="https://music.amazon.de/artists/B0HM7RZQGV/myd%C5%82orecords" target="_blank" rel="noopener">Amazon Music</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap foot-inner">
+        <span>© 2026 MydłoRecords · Wszystkie prawa zastrzeżone</span>
+        <span>
+            Dane artysty i utworów:
+            <a href="https://open.spotify.com/artist/2OcdkJNYBEmPx0D9Fy43km" target="_blank" rel="noopener">Spotify</a>
+        </span>
+    </div>
+</footer>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "MydłoRecords",
+    "alternateName": "Mydło Records",
+    "genre": "Experimental music",
+    "url": "https://open.spotify.com/artist/2OcdkJNYBEmPx0D9Fy43km",
+    "image": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27360b8aef8969ffb3389c9c29e",
+    "email": "213336321@proton.me",
+    "nationality": "PL",
+    "sameAs": [
+        "https://open.spotify.com/artist/2OcdkJNYBEmPx0D9Fy43km",
+        "https://www.youtube.com/channel/UCoM0F9o92VE_B0m8IfGHlpg",
+        "https://music.amazon.de/artists/B0HM7RZQGV/myd%C5%82orecords"
+    ],
+    "track": [
+        { "@type": "MusicRecording", "name": "paper-cups", "url": "https://open.spotify.com/track/1g6wqPUvIiVLODwQXaTB99", "duration": "PT2M12S" },
+        { "@type": "MusicRecording", "name": "Otwór", "url": "https://open.spotify.com/track/2ExOAA3VUMrtjhCReByp30", "duration": "PT3M9S" },
+        { "@type": "MusicRecording", "name": "Eliminatorrrr", "url": "https://open.spotify.com/track/26cxgmNoudXCLusCLtNVEM", "duration": "PT3M1S" },
+        { "@type": "MusicRecording", "name": "Julek bez kulek", "url": "https://open.spotify.com/track/5cz2shagsXtnBNqGsFCPVM", "duration": "PT2M4S" },
+        { "@type": "MusicRecording", "name": "Pan Mietek", "datePublished": "2026-10-12" }
+    ]
+}
+</script>
+
+<script>
+    (function () {
+        var rows = Array.prototype.slice.call(document.querySelectorAll('.track'));
+        var audio = new Audio();
+        audio.preload = 'none';
+        var current = null;
+
+        function resetRow(row) {
+            if (!row) return;
+            row.classList.remove('playing');
+            row.querySelector('.bar').style.width = '0%';
+            row.querySelector('.play').innerHTML =
+                '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+            row.querySelector('.play').setAttribute('aria-label',
+                'Odtwórz fragment: ' + row.querySelector('.t-title').textContent);
+        }
+
+        function playRow(row) {
+            row.classList.add('playing');
+            row.querySelector('.bar').style.width = '0%';
+            row.querySelector('.play').innerHTML =
+                '<svg viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>';
+            row.querySelector('.play').setAttribute('aria-label',
+                'Wstrzymaj: ' + row.querySelector('.t-title').textContent);
+
+            if (current !== row) {
+                audio.src = row.dataset.preview;
+                current = row;
+            }
+            audio.play().catch(function () {
+                /* podgląd niedostępny — zostaw link do Spotify */
+                window.open(row.dataset.spotify, '_blank', 'noopener');
+                resetRow(row);
+                current = null;
+            });
+        }
+
+        rows.forEach(function (row) {
+            row.querySelector('.play').addEventListener('click', function () {
+                if (row.classList.contains('playing')) {
+                    audio.pause();
+                    resetRow(row);
+                    current = null;
+                } else {
+                    rows.forEach(resetRow);
+                    playRow(row);
+                }
+            });
+        });
+
+        audio.addEventListener('timeupdate', function () {
+            if (!current || !audio.duration) return;
+            current.querySelector('.bar').style.width =
+                (audio.currentTime / audio.duration * 100) + '%';
+        });
+
+        audio.addEventListener('ended', function () {
+            resetRow(current);
+            current = null;
+        });
+
+        audio.addEventListener('error', function () {
+            if (current) resetRow(current);
+            current = null;
+        });
+    })();
+</script>
+
+</body>
+</html>
